@@ -12,9 +12,10 @@ const handleFileUpload = (e) => {
   reader.onload = (e) => {
     const data = new Uint8Array(e.target.result);
     const workbook = XLSX.read(data, { type: 'array'});
-
+    
     const firstSheet = workbook.Sheets[workbook.SheetNames[0]]
     excelData.value = XLSX.utils.sheet_to_json(firstSheet, {header: 1})
+    console.log(excelData.value)
   }
   reader.readAsArrayBuffer(file);
 }
